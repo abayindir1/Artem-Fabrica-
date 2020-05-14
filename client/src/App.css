@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+  }
+  /* Navbar */
+.navbar{
+    display: flex;
+    background-color: #0D222B;
+    color: #FF7530;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    margin: 0;
+    padding: 1%;
+    font-family: 'Pangolin', cursive;
+/* font-family: 'Righteous', cursive; */
+  }
+  .navbar ul {
+    display: flex;
+    list-style-type: none;
+  }
+  .navbar a {
+    color: #FF7530;
+    margin: 1rem;
+    text-decoration: unset;
+    font-size: larger;
+  }
+  .navbar a:hover{
+    color: red;
+  }
