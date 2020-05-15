@@ -1,11 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const authRouter = require("./routes/api/auth")
+const postRouter = require("./routes/api/post")
+const profileRouter = require("./routes/api/profile")
+const usersRouter = require("./routes/api/users")
+
 app = express();
 const PORT = process.env.PORT || 3001
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+
+app.use("/api/auth", authRouter)
+app.use("/api/users", usersRouter)
+// app.use("/api/post", postRouter)
+// app.use("/api/profile", profileRouter)
 
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/draward";
