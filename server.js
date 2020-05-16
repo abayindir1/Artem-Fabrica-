@@ -14,8 +14,8 @@ app.use(express.json())
 
 app.use("/api/auth", authRouter)
 app.use("/api/users", usersRouter)
-// app.use("/api/post", postRouter)
-// app.use("/api/profile", profileRouter)
+app.use("/api/profile", profileRouter)
+app.use("/api/posts", postRouter)
 
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/draward";

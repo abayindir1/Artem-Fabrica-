@@ -27,3 +27,22 @@ router.get("/me", auth, async(req, res) =>{
         res.status(500).send('Server Error');
     }
 })
+
+// @route Post api/profile
+// @desc create or update a profile
+// @access Private
+
+router.post("/", auth, async(req,res) =>{
+    const{
+        bio,
+        location,
+        facebook,
+        twitter,
+        instagram
+    } = req.body
+
+    // profile object
+    
+})
+
+module.exports= router
