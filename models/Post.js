@@ -42,12 +42,22 @@ const PostSchema = new mongoose.Schema({
             required: true
         }
     },
-    upVote:{
-        type: Number,
-    },
-    downVote:{
-        type: Number
-    },
+    upVote:[
+            {
+                user:{
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref:"user"
+                }
+            }
+        ],
+    downVote:[
+            {
+                user:{
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref:"user"
+                }
+            }
+        ],
     date:{
         type: Date,
         default: Date.now
