@@ -108,7 +108,6 @@ router.put("/upVote/:id", auth, async (req, res) => {
         (downVote) => downVote.user.toString() === req.user.id
       ).length > 0
     ) {
-      // console.log(post.downVote.filter(downVote => downVote.user.toString() === req.user.id)[0])
       const removeIndex = post.downVote
         .map((downVote) => downVote.user.toString())
         .indexOf(req.user.id);
@@ -143,10 +142,6 @@ router.put("/downVote/:id", auth, async (req, res) => {
       post.upVote.filter((upVote) => upVote.user.toString() === req.user.id)
         .length > 0
     ) {
-      // console.log(req.user.id)
-      // console.log(
-      //   post.upVote.filter(upVote => upVote.user.toString() === req.user.id).length > 0
-      // )
       const removeIndex = post.upVote
         .map((upVote) => upVote.user.toString())
         .indexOf(req.user.id);
