@@ -161,16 +161,23 @@ router.put("/downVote/:id", auth, async (req, res) => {
 // @route Post api/posts/comment/:id
 // @desc Create a comment
 // @access Private
-router.post('/comment/:id', auth [
-  check("text", "Text is necessary").not().isEmpty()
-], async(req,res)=>{
+router.post(
+  "/comment/:id",
+  [
+    auth,
+    [
+      check("text", "Enter a text")
+        .not()
+        .isEmpty()
+    ]
+  ], async(req,res)=>{
   const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     try {
-      const user = await User.findById(req.user.id)("-password")
+      const user = await User.findById(req.user.id).select("-password")
       const post = await Post.findById(req.params.id)
 
       const newComment = {
@@ -179,14 +186,21 @@ router.post('/comment/:id', auth [
         name: user.name
       };
 
-      post.comments.unshift(newComment);
+      console.log(post.comment)
+      post.comment.unshift(newComment);
       await post.save();
-      res.json(post.comments);
+      res.json(post.comment);
 
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server Error");
     }
 })
+
+
+// @route Delete api/posts/comment/:id/:comment_id
+// @desc Delete a comment
+// @access Private
+
 
 module.exports = router;
