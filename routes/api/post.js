@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
-
+const {check, validationResult} = require("express-validator")
 const Post = require("../../models/Post");
 const User = require("../../models/User");
 const Profile = require("../../models/profile");
@@ -157,5 +157,36 @@ router.put("/downVote/:id", auth, async (req, res) => {
     res.status(500).send("server error");
   }
 });
+
+// @route Post api/posts/comment/:id
+// @desc Create a comment
+// @access Private
+router.post('/comment/:id', auth [
+  check("text", "Text is necessary").not().isEmpty()
+], async(req,res)=>{
+  const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id)("-password")
+      const post = await Post.findById(req.params.id)
+
+      const newComment = {
+        user: req.user.id,
+        text: req.body.text,
+        name: user.name
+      };
+
+      post.comments.unshift(newComment);
+      await post.save();
+      res.json(post.comments);
+
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+    }
+})
 
 module.exports = router;
