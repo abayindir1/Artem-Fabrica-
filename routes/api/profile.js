@@ -42,7 +42,26 @@ router.post("/", auth, async(req,res) =>{
     } = req.body
 
     // profile object
+    const profileObject ={}
+    profileObject.user = req.user.id
+    if(bio) profileObject.bio = bio
+    if(location) profileObject.location = location
+
+    profileObject.socialMedia = {}
+    if(facebook) profileObject.socialMedia.facebook = facebook
+    if(twitter) profileObject.socialMedia.twitter = twitter
+    if(instagram) profileObject.socialMedia.instagram = instagram
+
+    try {
+        const profile = new Profile(profileObject)
+        await profile.save()
+        res.json(profile)
+    } catch (error) {
+        console.error(error.message)
+    res.status(500).send("server error")
+    }
     
+
 })
 
 module.exports= router
