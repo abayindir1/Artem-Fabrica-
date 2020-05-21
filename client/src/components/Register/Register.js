@@ -55,6 +55,7 @@ const Register = () => {
               placeholder="Password"
               name="password"
               value={password}
+              minLength="6"
               onChange={(e) => onChange(e)}
             />
           </div>
@@ -64,6 +65,7 @@ const Register = () => {
               placeholder="Confirm Password"
               name="password2"
               value={password2}
+              minLength="6"
               onChange={(e) => onChange(e)}
             />
           </div>
