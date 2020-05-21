@@ -4,6 +4,7 @@ const auth = require("../../middleware/auth");
 
 // const Profile = require("../../models/Profile")
 const User = require("../../models/User")
+const Post = require("../../models/Post")
 
 // @route GET api/profile/me
 // @desc Get current users profile
@@ -47,10 +48,10 @@ router.post("/", auth, async(req,res) =>{
     if(bio) profileObject.bio = bio
     if(location) profileObject.location = location
 
-    profileObject.socialMedia = {}
-    if(facebook) profileObject.socialMedia.facebook = facebook
-    if(twitter) profileObject.socialMedia.twitter = twitter
-    if(instagram) profileObject.socialMedia.instagram = instagram
+    profileObject.social = {}
+    if(facebook) profileObject.social.facebook = facebook
+    if(twitter) profileObject.social.twitter = twitter
+    if(instagram) profileObject.social.instagram = instagram
 
     try {
         let profile = await Profile.findOne({user: req.user.id})
@@ -107,5 +108,20 @@ router.get("/:id", auth, async(req, res) =>{
     }
 })
 
+// @route delete api/profile/
+// @desc delete proile, user, and post that belongs to user
+// @access Private
+router.delete("/", auth, async(req,res) =>{
+    try {
+    await Post.deleteMany({user: req.user.id})
+    await Profile.findOneAndRemove({user: req.user.id})
+    await User.findByIdAndRemove({_id: req.user.id})
+
+    res.json({msg: "User Deleted"})
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("server error")
+    }
+})
 
 module.exports= router
