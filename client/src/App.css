@@ -1,6 +1,7 @@
-* {
+/* * {
     margin: 0;
-  }
+  } */
+
   /* Navbar */
 .navbar{
     display: flex;
@@ -13,6 +14,7 @@
     padding: 1%;
     font-family: 'Pangolin', cursive;
 /* font-family: 'Righteous', cursive; */
+
   }
   .navbar ul {
     display: flex;
@@ -27,3 +29,59 @@
   .navbar a:hover{
     color: white;
   }
+
+  /* Landing */
+  .landing{
+    background-image: url("./images/Landing.png");
+    background-position: 0% 0%;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 42.2rem;
+    justify-content: space-between;
+    font-family: 'Pangolin', cursive;
+    text-align: center;
+    color: white;
+  }
+  .landing-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .landing .btn{
+    margin:1%
+  }
+  /* Register */
+  .container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FF7530;
+  }
+  .register-form{
+    background-color: #0D222B;
+    text-align: center;
+    padding: 3%;
+    border-radius: 6rem;
+  }
+input{
+  width: 60%;
+  padding: 0.5%;
+}
+.form input[type='submit'] {
+    width: 10%;
+  }
+  /* sign in form */
+  .sign-in-form{
+    background-color: #0D222B;
+    text-align: center;
+    padding: 3%;
+    border-radius: 6rem;
+  }
+  
+
+
+
+
