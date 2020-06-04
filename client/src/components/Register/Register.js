@@ -28,7 +28,7 @@ const Register = (props) => {
     }
   };
 
-  // Redirect if logged in
+  // Redirect if registered
 if(props.isAuthenticated){
   return <Redirect to="/dashboard"/>
 }
