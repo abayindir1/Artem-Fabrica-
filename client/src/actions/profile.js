@@ -6,12 +6,13 @@ import { setAlert } from "./alert";
 export const getCurrentProfile = () => async dispatch =>{
     
     try {
-        const res = axios.get("/api/profile/me")
-
-    dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-    })
+        const res = axios.get("/api/profile/me").then(response=>{
+            console.log(response.data)
+            dispatch({
+                type: GET_PROFILE,
+                payload: response.data
+            })
+        })
     } catch (error) {
         dispatch({
             type: PROFILE_ERROR,
