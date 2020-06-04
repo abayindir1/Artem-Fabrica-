@@ -6,7 +6,7 @@ const Landing = () =>{
     return(
         <section className="landing">
             <div className="container landing-content">
-                    <h1 className="x-large">DrawarD</h1>
+                    <h1 className="x-large">Artem Fabrica</h1>
                     <p className="lead">
                         Create a piece of art and share with others. Join now!
                     </p>

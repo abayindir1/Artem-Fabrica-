@@ -15,7 +15,7 @@ const Navbar = (props) =>{
     const authLinks = (
         <ul>
                 <li>
-                    <a onClick={props.logout} href="#!"><i class="fas fa-running"></i> Logout</a>
+                    <a onClick={props.logout} href="#!"><i className="fas fa-running"></i> Logout</a>
                 </li>
         </ul>
     )
@@ -29,7 +29,7 @@ const Navbar = (props) =>{
     return(
         <nav className="navbar">
             <h3>
-                <Link to="/"><i className="fas fa-paint-brush"></i> DrawarD</Link>
+                <Link to="/dashboard"><i className="fas fa-paint-brush"></i> Artem Fabrica</Link>
             </h3>
     {!auth.loading && (<Fragment>{auth.isAuthenticated ? authLinks : enterLinks}</Fragment>)}
         </nav>
