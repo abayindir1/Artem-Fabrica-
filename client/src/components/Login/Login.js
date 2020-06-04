@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
+import {connect} from "react-redux"
+import PropTypes from "prop-types"
 
-const Login = () => {
+import {login} from "../../actions/auth"
+import { setAlert } from "../../actions/alert";
+ 
+const Login = (props) => {
   const [formData, setFormData] = React.useState({
     email: "",
     password: "",
@@ -15,7 +20,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    props.login({email, password})
   };
   return (
     <Fragment>
@@ -25,7 +30,7 @@ const Login = () => {
           <i className="fas fa-user"></i> Sign Into Your Account
         </p>
         <form className="form" onSubmit={(e) => onSubmit(e)}>
-          <div className="form-group">
+        <div className="form-group">
             <input
               type="email"
               placeholder="Email Address"
@@ -59,4 +64,9 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+}
+
+export default connect(null, {setAlert, login})(Login);
