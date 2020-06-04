@@ -22,6 +22,12 @@ const Login = (props) => {
     e.preventDefault();
     props.login({email, password})
   };
+
+// Redirect if logged in
+if(props.isAuthenticated){
+  return <Redirect to="/dashboard"/>
+}
+
   return (
     <Fragment>
       <div className="sign-in-form">
@@ -67,6 +73,11 @@ const Login = (props) => {
 Login.propTypes = {
   setAlert: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 }
 
-export default connect(null, {setAlert, login})(Login);
+const mapStateProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateProps, {setAlert, login})(Login);

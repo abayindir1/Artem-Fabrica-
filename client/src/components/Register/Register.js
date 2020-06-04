@@ -28,6 +28,11 @@ const Register = (props) => {
     }
   };
 
+  // Redirect if logged in
+if(props.isAuthenticated){
+  return <Redirect to="/dashboard"/>
+}
+
   return (
     <Fragment>
       <div className="register-form">
@@ -94,6 +99,11 @@ const Register = (props) => {
 Register.propTypes = {
   setAlert:PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated:PropTypes.bool
 }
 
-export default connect(null, { setAlert, register })(Register);
+const mapStateProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateProps, { setAlert, register })(Register);
