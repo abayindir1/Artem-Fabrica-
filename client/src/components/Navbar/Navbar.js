@@ -41,8 +41,8 @@ Navbar.propTypes = {
     mapStateProps: PropTypes.object.isRequired,
 }
 
-const mapStateProps = (state) =>({
+const mapStateToProps = (state) =>({
     auth: state.auth
 })
 
-export default connect(mapStateProps, {logout})(Navbar)
+export default connect(mapStateToProps, {logout})(Navbar)
