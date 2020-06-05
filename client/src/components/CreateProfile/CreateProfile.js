@@ -1,7 +1,9 @@
 import React, { Fragment, useState } from "react";
+import {Link, withRouter} from "react-router-dom"
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { body } from "express-validator";
+import {createProfile} from "../../actions/profile"
 
 const CreateProfile = (props) => {
   const [formData, setFormData] = React.useState({
@@ -27,7 +29,7 @@ const CreateProfile = (props) => {
     <Fragment>
       <div className="sign-in-form">
         <h2>
-          <i class="fas fa-id-card"></i> Create A Profile
+        <i class="far fa-id-card"></i> Create A Profile
         </h2>
         <form className="form" onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
@@ -41,9 +43,9 @@ const CreateProfile = (props) => {
             />
           </div>
           <div className="form-group">
+          <label for="cars">Choose Your State:</label>
             <select
               type="location"
-              placeholder="Your Location (Optional)"
               name="location"
               value={location}
               onChange={(e) => onChange(e)}
