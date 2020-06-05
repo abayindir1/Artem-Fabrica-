@@ -31,8 +31,8 @@ function App() {
       <Router>
         <Navbar />
         <Route exact path="/" component={Landing} />
-        <section className="landing-container container">
           <Alert />
+        <section className="landing-container container">
           <Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />

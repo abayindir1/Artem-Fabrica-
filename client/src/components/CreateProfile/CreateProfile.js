@@ -22,7 +22,7 @@ const CreateProfile = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    props.createProfile(formData, props.history)
   };
 
   return (
@@ -143,6 +143,10 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propTypes = {};
+CreateProfile.propTypes = {
+    createProfile: PropTypes.func.isRequired,
+};
 
-export default connect()(CreateProfile);
+
+
+export default connect(null, {createProfile})(withRouter(CreateProfile));
