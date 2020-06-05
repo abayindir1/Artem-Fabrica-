@@ -29,7 +29,7 @@ const Navbar = (props) =>{
     return(
         <nav className="navbar">
             <h3>
-                <Link to="/dashboard"><i className="fas fa-paint-brush"></i> Artem Fabrica</Link>
+                <Link to="/"><i className="fas fa-paint-brush"></i> Artem Fabrica</Link>
             </h3>
     {!auth.loading && (<Fragment>{auth.isAuthenticated ? authLinks : enterLinks}</Fragment>)}
         </nav>
