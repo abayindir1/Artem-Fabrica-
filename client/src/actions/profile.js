@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PROFILE_ERROR, GET_PROFILE } from "./types";
+import { PROFILE_ERROR, GET_PROFILE, DELETE_ACCOUNT} from "./types";
 import { setAlert } from "./alert";
 
 // Get Current user's profile
@@ -7,7 +7,7 @@ export const getCurrentProfile = () => async dispatch =>{
     
     try {
        
-        axios.get("/api/profile/me").then(response=>{
+       await axios.get("/api/profile/me").then(response=>{
             dispatch({
                 type: GET_PROFILE,
                 payload: response.data
@@ -48,5 +48,25 @@ export const createProfile = (formData, history, edit=false) =>async dispatch =>
             type: PROFILE_ERROR,
             payload: {msg: error.response.statusText, status: error.response.status}
         })
+    }
+}
+
+// Delete account, profile and posts of the user
+export const deleteUser =() => async dispatch =>{
+    if(window.confirm("Are you sure to delete your account with your profile and posts?")){
+
+        try {
+            await axios.delete("/api/profile").then((res)=>{
+                dispatch({
+                    type: DELETE_ACCOUNT
+                })
+                dispatch(setAlert("Your account has ben deleted.", "success"))
+            })
+        } catch (error) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: {msg: error.response.statusText, status: error.response.status}
+        })
+        }
     }
 }
