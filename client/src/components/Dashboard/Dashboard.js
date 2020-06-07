@@ -3,19 +3,18 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
-import {deleteUser} from "../../actions/profile" 
+import { deleteUser } from "../../actions/profile";
 import Spinner from "../Spinner/Spinner";
 
 const Dashboard = (props) => {
-  
   useEffect(() => {
     props.getCurrentProfile();
     // console.log(props.profile.profile)
   }, []);
 
-  const DeleteAccount=()=>{
-    props.deleteUser()
-  }
+  const DeleteAccount = () => {
+    props.deleteUser();
+  };
 
   return props.profile.loading && props.profile.profile === null ? (
     <Spinner />
@@ -28,10 +27,21 @@ const Dashboard = (props) => {
         </h3>
         {props.profile.profile !== null ? (
           <Fragment>
-            <Link to="/edit-profile" className="btn btn-warning">
-              Edit Profile
-            </Link>
-            <button className="btn btn-danger" onClick={DeleteAccount}>Delete Your Account</button>
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">{props.profile.profile.name}</h4>
+                <h5 className="card-subtitle">
+                  From {props.profile.profile.location}
+                </h5>
+                <p className="card-text">{props.profile.profile.bio}</p>
+                <Link to="/edit-profile" className="btn btn-warning">
+                  Edit Profile
+                </Link>
+                <button className="btn btn-danger" onClick={DeleteAccount}>
+                  Delete Your Account
+                </button>
+              </div>
+            </div>
           </Fragment>
         ) : (
           <Fragment>
@@ -58,4 +68,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteUser })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteUser })(
+  Dashboard
+);

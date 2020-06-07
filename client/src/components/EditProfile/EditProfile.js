@@ -18,7 +18,7 @@ const EditProfile = (props) => {
 
   useEffect(()=>{
     getCurrentProfile();
-    // console.log(props.profile)
+    console.log(props.profile)
   },[])
   useEffect(() => {
     setFormData({
