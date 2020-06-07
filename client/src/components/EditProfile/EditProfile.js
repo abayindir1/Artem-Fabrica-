@@ -1,11 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { body } from "express-validator";
-import { createProfile } from "../../actions/profile";
+import { createProfile, getCurrentProfile } from "../../actions/profile";
 
-const CreateProfile = (props) => {
+const EditProfile = (props) => {
   const [formData, setFormData] = React.useState({
     bio: "",
     location: "",
@@ -16,20 +16,34 @@ const CreateProfile = (props) => {
 
   const { bio, location, facebook, instagram, twitter } = formData;
 
+  useEffect(()=>{
+    getCurrentProfile();
+    // console.log(props.profile)
+  },[])
+  useEffect(() => {
+    setFormData({
+      bio: props.profile.loading || !props.profile.profile.bio ? " " : props.profile.profile.bio,
+      location: props.profile.loading || !props.profile.profile.location ? " " : props.profile.profile.location,
+      facebook: props.profile.loading || !props.profile.profile.social.facebook ? " " : props.profile.profile.social.facebook,
+      instagram: props.profile.loading || !props.profile.profile.social.instagram ? " " : props.profile.profile.social.instagram,
+      twitter: props.profile.loading || !props.profile.profile.social.twitter ? " " : props.profile.profile.social.twitter,
+    });
+  }, [props.profile.loading]);
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    props.createProfile(formData, props.history, true);
+    props.createProfile(formData, props.history);
   };
 
   return (
     <Fragment>
       <div className="sign-in-form">
         <h2>
-          <i className="far fa-id-card"></i> Create A Profile
+          <i className="far fa-id-card"></i> Edit Your Profile
         </h2>
         <form className="form" onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
@@ -146,8 +160,16 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfile)
+);

@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
-import spinner from "../Spinner/Spinner";
 import Spinner from "../Spinner/Spinner";
 
 const Dashboard = (props) => {
-  console.log(props.profile);
+  
   useEffect(() => {
     props.getCurrentProfile();
+    // console.log(props.profile.profile)
   }, []);
 
   return props.profile.loading && props.profile.profile === null ? (
@@ -18,18 +18,22 @@ const Dashboard = (props) => {
     <Fragment>
       <div className="dashboad-welcome">
         <h3>
-          <i class="far fa-smile-beam"></i> Hello{" "}
+          <i className="far fa-smile-beam"></i> Hello{" "}
           {props.auth.user && props.auth.user.name}
         </h3>
         {props.profile.profile !== null ? (
           <Fragment>
-              Has
+            <Link to="/edit-profile" className="btn btn-light">
+              Edit Profile
+            </Link>
           </Fragment>
         ) : (
           <Fragment>
-              <p>Looks like you don't have a profile yet.</p>
-              <Link to="/create-profile" className="btn btn-light">Create Profile</Link>
-            </Fragment>
+            <p>Looks like you don't have a profile yet.</p>
+            <Link to="/create-profile" className="btn btn-light">
+              Create Profile
+            </Link>
+          </Fragment>
         )}
       </div>
     </Fragment>

@@ -6,7 +6,8 @@ import { setAlert } from "./alert";
 export const getCurrentProfile = () => async dispatch =>{
     
     try {
-        const res = axios.get("/api/profile/me").then(response=>{
+       
+        axios.get("/api/profile/me").then(response=>{
             dispatch({
                 type: GET_PROFILE,
                 payload: response.data
@@ -35,11 +36,10 @@ export const createProfile = (formData, history, edit=false) =>async dispatch =>
                 payload: response.data
             })
 
-            dispatch(setAlert(edit ? "Profile Updated" : "Profile Created"))
+            dispatch(setAlert(!edit ? "Profile Updated" : "Profile Created", "success"))
 
-            if(!edit){
+            
                 history.push("/dashboard")
-            }
         })
     } catch (error) {
         const errors = error.response.data.errors;
