@@ -152,7 +152,7 @@ const EditProfile = (props) => {
           <input
             type="submit"
             className="btn btn-outline-light"
-            value="Create"
+            value="Edit"
           />
         </form>
       </div>
