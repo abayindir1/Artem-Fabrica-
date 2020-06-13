@@ -10,13 +10,14 @@ import Alert from "./components/Alert/Alert";
 import Dashboard from "./components/Dashboard/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CreateProfile from "./components/CreateProfile/CreateProfile";
+import EditProfile from "./components/EditProfile/EditProfile";
+import Profiles from "./components/Profiles/Profiles";
 
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { userLoad } from "./actions/auth";
-import EditProfile from "./components/EditProfile/EditProfile";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -44,6 +45,7 @@ function App() {
         <section className="container">
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/profiles" component={Profiles}/>
           </Switch>
             
         </section>
