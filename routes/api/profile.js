@@ -92,7 +92,7 @@ router.get("/", auth, async(req,res)=>{
 })
 
 // @route Get api/profile/:id
-// @desc get proile by id
+// @desc get profile by id
 // @access Private
 router.get("/:id", auth, async(req, res) =>{
     try {

@@ -7,7 +7,7 @@ import { getProfiles } from "../../actions/profile";
 
 const Profiles = (props) => {
   useEffect(() => {
-    console.log(props.profile.profiles);
+    console.log(props.profile);
     props.getProfiles();
   }, []);
   return (
@@ -21,17 +21,17 @@ const Profiles = (props) => {
           <div className="profiles">
             {props.profile.profiles.length > 0 ? (
               props.profile.profiles.map((profile) => 
-                <div className="card">
+                <div className="card" key={profile._id}>
                 <div className="card-body">
                   <h4 className="card-title">{profile.name}</h4>
                   <h5 className="card-subtitle">
                     From {profile.location}
                   </h5>
                   <p className="card-text">{profile.bio}</p>
-                  <a href={profile.social.facebook} class="card-link"><i class="fab fa-facebook"></i> Facebook</a>
-                  <a href={profile.social.instagram} class="card-link"><i class="fab fa-instagram"></i> Instagram</a>
-                  <a href={profile.social.twitter} class="card-link"><i class="fab fa-twitter"></i> Twitter</a> <br/> <br/>
-                  <Link to="/" className="btn btn-warning">
+                  <a href={profile.social.facebook} className="card-link"><i className="fab fa-facebook"></i> Facebook</a>
+                  <a href={profile.social.instagram} className="card-link"><i className="fab fa-instagram"></i> Instagram</a>
+                  <a href={profile.social.twitter} className="card-link"><i className="fab fa-twitter"></i> Twitter</a> <br/> <br/>
+                  <Link to={`/profile/`+ profile._id} className="btn btn-warning">
                     Go To Profile
                   </Link>
                 </div>
