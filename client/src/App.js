@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CreateProfile from "./components/CreateProfile/CreateProfile";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Profiles from "./components/Profiles/Profiles";
+import Profile from "./components/Profile/Profile";
 
 // Redux
 import { Provider } from "react-redux";
@@ -46,6 +47,8 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/profiles" component={Profiles}/>
+            <Route exact path="/profile/:id" component={Profile}/>
+
           </Switch>
             
         </section>

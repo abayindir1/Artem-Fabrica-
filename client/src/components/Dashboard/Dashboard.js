@@ -34,9 +34,9 @@ const Dashboard = (props) => {
                   From {props.profile.profile.location}
                 </h5>
                 <p className="card-text">{props.profile.profile.bio}</p>
-                <a href={props.profile.profile.social.facebook} class="card-link"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href={props.profile.profile.social.instagram} class="card-link"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href={props.profile.profile.social.twitter} class="card-link"><i class="fab fa-twitter"></i> Twitter</a> <br/> <br/>
+                <a href={props.profile.profile.social.facebook} className="card-link"><i className="fab fa-facebook"></i> Facebook</a>
+                <a href={props.profile.profile.social.instagram} className="card-link"><i className="fab fa-instagram"></i> Instagram</a>
+                <a href={props.profile.profile.social.twitter} className="card-link"><i className="fab fa-twitter"></i> Twitter</a> <br/> <br/>
                 <Link to="/edit-profile" className="btn btn-warning">
                   Edit Profile
                 </Link>
