@@ -22,11 +22,11 @@ const EditProfile = (props) => {
   },[])
   useEffect(() => {
     setFormData({
-      bio: props.profile.loading || !props.profile.profile.bio ? " " : props.profile.profile.bio,
-      location: props.profile.loading || !props.profile.profile.location ? " " : props.profile.profile.location,
-      facebook: props.profile.loading || !props.profile.profile.social.facebook ? " " : props.profile.profile.social.facebook,
-      instagram: props.profile.loading || !props.profile.profile.social.instagram ? " " : props.profile.profile.social.instagram,
-      twitter: props.profile.loading || !props.profile.profile.social.twitter ? " " : props.profile.profile.social.twitter,
+      bio: props.profile.loading || !props.profile.profile.bio ? "" : props.profile.profile.bio,
+      location: props.profile.loading || !props.profile.profile.location ? "" : props.profile.profile.location,
+      facebook: props.profile.loading || !props.profile.profile.social.facebook ? "" : props.profile.profile.social.facebook,
+      instagram: props.profile.loading || !props.profile.profile.social.instagram ? "" : props.profile.profile.social.instagram,
+      twitter: props.profile.loading || !props.profile.profile.social.twitter ? "" : props.profile.profile.social.twitter,
     });
   }, [props.profile.loading]);
 

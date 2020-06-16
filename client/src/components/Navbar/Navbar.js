@@ -49,7 +49,7 @@ const Navbar = (props) => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  mapStateProps: PropTypes.object.isRequired,
+  mapStateProps: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
