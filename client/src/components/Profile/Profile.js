@@ -22,13 +22,13 @@ const Profile = (props) => {
         <p className="card-text">{props.profile.profile.bio}</p>
         {props.profile.profile.social.facebook ? <a href={props.profile.profile.social.facebook} className="card-link">
           <i className="fab fa-facebook"></i> Facebook
-        </a> : <p><i className="fab fa-facebook"></i> Facebook</p>}
+        </a> : <a href={null}><i className="fab fa-facebook"></i> Facebook </a>}
         {props.profile.profile.social.instagram ? <a href={props.profile.profile.social.instagram} className="card-link">
           <i className="fab fa-instagram"></i> Instagram
-        </a> : <p><i className="fab fa-facebook"></i> Instagram</p>}
+        </a> : <a href={null}><i className="fab fa-instagram"></i> Instagram </a>}
         {props.profile.profile.social.twitter ? <a href={props.profile.profile.social.twitter} className="card-link">
           <i className="fab fa-twitter"></i> Twitter
-        </a> : <p><i className="fab fa-facebook"></i> Twitter</p>}
+        </a> : <a href={null}><i className="fab fa-twitter"></i> Twitter </a>}
       </div>
     </div>
       )}

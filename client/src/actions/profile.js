@@ -98,7 +98,7 @@ export const createProfile = (formData, history, edit = false) => async (
           setAlert(!edit ? "Profile Updated" : "Profile Created", "success")
         );
 
-        history.push("/dashboard");
+        history.push("/home");
       });
   } catch (error) {
     const errors = error.response.data.errors;

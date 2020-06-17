@@ -7,12 +7,12 @@ import Landing from "./components/Landing/Landing";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Alert from "./components/Alert/Alert";
-import Dashboard from "./components/Dashboard/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CreateProfile from "./components/CreateProfile/CreateProfile";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Profiles from "./components/Profiles/Profiles";
 import Profile from "./components/Profile/Profile";
+import Home from "./components/Home/Home";
 
 // Redux
 import { Provider } from "react-redux";
@@ -45,7 +45,7 @@ function App() {
         </section>
         <section className="container">
           <Switch>
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/profiles" component={Profiles}/>
             <PrivateRoute exact path="/profile/:id" component={Profile}/>
 

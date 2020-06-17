@@ -6,7 +6,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import { deleteUser } from "../../actions/profile";
 import Spinner from "../Spinner/Spinner";
 
-const Dashboard = (props) => {
+const Home = (props) => {
   useEffect(() => {
     props.getCurrentProfile();
     // console.log(props.profile.profile)
@@ -20,7 +20,7 @@ const Dashboard = (props) => {
     <Spinner />
   ) : (
     <Fragment>
-      <div className="dashboad-welcome">
+      <div className="home-welcome">
         <h3>
           <i className="far fa-smile-beam"></i> Hello{" "}
           {props.auth.user && props.auth.user.name}
@@ -59,7 +59,7 @@ const Dashboard = (props) => {
   );
 };
 
-Dashboard.propTypes = {
+Home.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
@@ -72,5 +72,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getCurrentProfile, deleteUser })(
-  Dashboard
+  Home
 );
