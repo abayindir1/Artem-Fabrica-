@@ -94,7 +94,7 @@ router.get("/", auth, async(req,res)=>{
 // @route Get api/profile/:id
 // @desc get profile by id
 // @access Private
-router.get("/:id", auth, async(req, res) =>{
+router.get("/user/:id", auth, async(req, res) =>{
     try {
         const profile = await Profile.findOne({user: req.params.id})
         

@@ -8,7 +8,7 @@ import ProfileItem from "../Profile/ProfileItem";
 
 const Profiles = (props) => {
   useEffect(() => {
-    console.log(props.profile);
+    console.log(props);
     props.getProfiles();
   }, []);
   return (
@@ -22,7 +22,7 @@ const Profiles = (props) => {
           <div className="profiles">
             {props.profile.profiles.length > 0 ? (
               props.profile.profiles.map((profile) =>
-                <ProfileItem key={profile._id} profile={profile}/>
+                <ProfileItem key={profile.user._id} profile={profile}/>
               )
             ) : (
               <h3>No Profiles Found</h3>
