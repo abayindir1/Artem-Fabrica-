@@ -12,23 +12,23 @@ const Profile = (props) => {
     },[getProfileById, props.match.params.id]);
   return (
     <Fragment>
-      {props.profile === null || props.profile.loading ? (
+      {props.profile.profile === null || props.profile.profile.loading ? (
         <Spinner />
       ) : (
         <div className="card">
       <div className="card-body">
-        <h4 className="card-title">{props.profile.profile.name}</h4>
+      <h4 className="card-title">{props.profile.profile.name}</h4>
         <h5 className="card-subtitle">From {props.profile.profile.location}</h5>
         <p className="card-text">{props.profile.profile.bio}</p>
-        {/* {props.profile.profile.social.facebook ? <a href={props.profile.social.facebook} className="card-link">
+        {props.profile.profile.social.facebook ? <a href={props.profile.profile.social.facebook} className="card-link">
           <i className="fab fa-facebook"></i> Facebook
         </a> : <p><i className="fab fa-facebook"></i> Facebook</p>}
-        {props.profile.profile.social.instagram ? <a href={props.profile.social.instagram} className="card-link">
+        {props.profile.profile.social.instagram ? <a href={props.profile.profile.social.instagram} className="card-link">
           <i className="fab fa-instagram"></i> Instagram
-        </a> : " "}
-        {props.profile.profile.social.twitter ? <a href={props.profile.social.twitter} className="card-link">
+        </a> : <p><i className="fab fa-facebook"></i> Instagram</p>}
+        {props.profile.profile.social.twitter ? <a href={props.profile.profile.social.twitter} className="card-link">
           <i className="fab fa-twitter"></i> Twitter
-        </a> : " "} */}
+        </a> : <p><i className="fab fa-facebook"></i> Twitter</p>}
       </div>
     </div>
       )}
