@@ -15,9 +15,22 @@ const Profile = (props) => {
       {props.profile === null || props.profile.loading ? (
         <Spinner />
       ) : (
-        <div>
-            <p>Test {props.profile.profile.name} Test2</p>
-        </div>
+        <div className="card">
+      <div className="card-body">
+        <h4 className="card-title">{props.profile.profile.name}</h4>
+        <h5 className="card-subtitle">From {props.profile.profile.location}</h5>
+        <p className="card-text">{props.profile.profile.bio}</p>
+        {/* {props.profile.profile.social.facebook ? <a href={props.profile.social.facebook} className="card-link">
+          <i className="fab fa-facebook"></i> Facebook
+        </a> : <p><i className="fab fa-facebook"></i> Facebook</p>}
+        {props.profile.profile.social.instagram ? <a href={props.profile.social.instagram} className="card-link">
+          <i className="fab fa-instagram"></i> Instagram
+        </a> : " "}
+        {props.profile.profile.social.twitter ? <a href={props.profile.social.twitter} className="card-link">
+          <i className="fab fa-twitter"></i> Twitter
+        </a> : " "} */}
+      </div>
+    </div>
       )}
     </Fragment>
   );
