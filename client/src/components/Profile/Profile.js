@@ -9,14 +9,14 @@ const Profile = (props) => {
   useEffect(() => {
       props.getProfileById(props.match.params.id);
       console.log(props.profile);
-    }, [getProfileById]);
+    },[getProfileById, props.match.params.id]);
   return (
     <Fragment>
-      {props.loading ? (
+      {props.profile === null || props.profile.loading ? (
         <Spinner />
       ) : (
         <div>
-            <p>Test {props.profile.name} Test2</p>
+            <p>Test {props.profile.profile.name} Test2</p>
         </div>
       )}
     </Fragment>
@@ -24,14 +24,14 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-  getProfileById: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  profile: state.profile,
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, { getProfileById })(Profile);
+    getProfileById: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
+  };
+  
+  const mapStateToProps = (state) => ({
+    profile: state.profile,
+    auth: state.auth
+  });
+  
+  export default connect(mapStateToProps, { getProfileById })(Profile);
