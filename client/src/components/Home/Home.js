@@ -43,6 +43,9 @@ const Home = (props) => {
                 <button className="btn btn-danger" onClick={DeleteAccount}>
                   Delete Your Account
                 </button>
+                <Link to="/draw" className="btn btn-primary">
+                  Draw
+                </Link>
               </div>
             </div>
           </Fragment>

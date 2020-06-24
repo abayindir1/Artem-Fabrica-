@@ -13,6 +13,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import Profiles from "./components/Profiles/Profiles";
 import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
+import Draw from "./components/Draw/Draw";
 
 // Redux
 import { Provider } from "react-redux";
@@ -48,6 +49,7 @@ function App() {
             <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/profiles" component={Profiles}/>
             <PrivateRoute exact path="/profile/:id" component={Profile}/>
+            <PrivateRoute exact path="/draw" component={Draw}/>
 
           </Switch>
             
