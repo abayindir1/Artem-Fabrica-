@@ -1,20 +1,24 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useRef, useState } from "react";
+import {connect} from "react-redux"
+import PropTypes from "prop-types"
 import CanvasDraw from "react-canvas-draw";
 
+import {postCreate} from "../../actions/post" 
+import { setAlert } from "../../actions/alert";
+
 const Draw = (props) => {
-  const [formData, setFormData] = React.useState({
-    postText: "",
-    color: "",
-    brushRadious: 5,
-  });
-  const {postText,  color, brushRadious } = formData;
+  
+ const [postText, setPostText] = useState("");
+ const [color, setColor] = useState("");
+ const [brushRadious, setbrushRadious] = useState(5);
 
   const canvasRef = useRef(null);
 
   const onSave = () => {
     var DrawData = canvasRef.current.getSaveData();
-    console.log(postText)
     console.log(DrawData)
+
+    props.postCreate({postText, DrawData})
 }
 
 
@@ -34,12 +38,13 @@ const Draw = (props) => {
             placeholder="Tell something about this work"
             name="postText"
             value={postText}
-            onChange={(e)=>{setFormData({ ...formData, [e.target.name]: e.target.value });}}
+            onChange={(e)=>setPostText(e.target.value)}
           ></input>
         </div>
       </form>
       <CanvasDraw
         canvasWidth={400}
+        color="#000000"
         canvasHeight={400}
         style={{ border: "3px solid red" }}
         ref={canvasRef}
@@ -58,4 +63,10 @@ const Draw = (props) => {
   );
 };
 
-export default Draw;
+Draw.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    postCreate: PropTypes.func.isRequired,
+  }
+
+  
+export default connect(null, {setAlert, postCreate})(Draw);

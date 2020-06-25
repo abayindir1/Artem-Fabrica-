@@ -35,11 +35,9 @@ const PostSchema = new mongoose.Schema({
     ],
     height: {
       type: Number,
-      required: true,
     },
     width: {
       type: Number,
-      required: true,
     },
   },
   upVote: [
