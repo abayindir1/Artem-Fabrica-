@@ -7,20 +7,23 @@ import {postCreate} from "../../actions/post"
 import { setAlert } from "../../actions/alert";
 
 const Draw = (props) => {
-  
- const [postText, setPostText] = useState("");
- const [color, setColor] = useState("");
- const [brushRadious, setbrushRadious] = useState(5);
+  const [formData, setFormData] = React.useState({
+    postText: "",
+    color: "",
+    brushRadious: ""
+  });
+
+  const { postText, color, brushRadious } = formData;
 
   const canvasRef = useRef(null);
 
   const onSave = () => {
-    var DrawData = canvasRef.current.getSaveData();
-    console.log(DrawData)
-
-    props.postCreate({postText, DrawData})
+    var drawing = canvasRef.current.getSaveData();
+    var drawingData = JSON.parse(drawing)
+    console.log(drawingData)
+    // console.log(postText)
+    props.postCreate(drawingData)
 }
-
 
   const onClear = () => {
     canvasRef.current.clear();
@@ -29,6 +32,8 @@ const Draw = (props) => {
   const onUndo = () => {
     canvasRef.current.undo();
   };
+
+
   return (
     <Fragment>
       <form>
@@ -38,14 +43,14 @@ const Draw = (props) => {
             placeholder="Tell something about this work"
             name="postText"
             value={postText}
-            onChange={(e)=>setPostText(e.target.value)}
+            onChange={(e)=> setFormData({ ...formData, [e.target.name]: e.target.value })}
           ></input>
         </div>
       </form>
       <CanvasDraw
-        canvasWidth={400}
+        canvasWidth={300}
         color="#000000"
-        canvasHeight={400}
+        canvasHeight={300}
         style={{ border: "3px solid red" }}
         ref={canvasRef}
       />

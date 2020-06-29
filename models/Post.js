@@ -11,14 +11,6 @@ const PostSchema = new mongoose.Schema({
   drawing: {
     lines: [
       {
-        brushColor: {
-          type: String,
-          required: true,
-        },
-        brushRadius: {
-          type: Number,
-          required: true,
-        },
         points: [
           {
             x: {
@@ -31,14 +23,16 @@ const PostSchema = new mongoose.Schema({
             },
           },
         ],
+        brushColor: {
+          type: String,
+          required: true,
+        },
+        brushRadius: {
+          type: Number,
+          required: true,
+        },
       },
     ],
-    height: {
-      type: Number,
-    },
-    width: {
-      type: Number,
-    },
   },
   upVote: [
     {

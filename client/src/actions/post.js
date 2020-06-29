@@ -1,10 +1,10 @@
 import axios from "axios";
-import { POST_CREATE, POST_ERROR } from "./types";
+import { POST_CREATE, POST_ERROR, POST_LOAD } from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
 
 // post create
-export const postCreate = (DrawData, text, draw, history) => async (
+export const postCreate = ({text, drawing}) => async (
   dispatch
 ) => {
   try {
@@ -13,25 +13,26 @@ export const postCreate = (DrawData, text, draw, history) => async (
         "Content-Type": "application/json",
       },
     };
-    const body = JSON.stringify({ text, draw });
-    console.log("before call");
-    await axios.post("/api/posts", body, config).then((response) => {
-        console.log("after call");
+
+    const body = JSON.stringify(text, drawing)
+    // console.log("before call");
+    await axios.post("/api/posts", text, drawing, config).then((response) => {
+        console.log(response.data);
       dispatch({
         type: POST_CREATE,
         payload: response.data,
       });
 
       dispatch(setAlert("Post Created", "success"));
-
-      history.push("/home");
     });
   } catch (error) {
+    console.log(error)
     dispatch({
       type: POST_ERROR,
       payload: {
-        msg: error.response,
+        msg: error,
       },
     });
   }
 };
+
