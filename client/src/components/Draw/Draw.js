@@ -8,7 +8,6 @@ import { setAlert } from "../../actions/alert";
 
 const Draw = (props) => {
   const [formData, setFormData] = React.useState({
-    postText: "",
     color: "",
     brushRadious: ""
   });
@@ -18,11 +17,8 @@ const Draw = (props) => {
   const canvasRef = useRef(null);
 
   const onSave = () => {
-    var drawing = canvasRef.current.getSaveData();
-    var drawingData = JSON.parse(drawing)
-    console.log(drawingData)
-    // console.log(postText)
-    props.postCreate(drawingData)
+    const drawing = canvasRef.current.getSaveData();
+    props.postCreate(drawing)
 }
 
   const onClear = () => {
@@ -33,24 +29,12 @@ const Draw = (props) => {
     canvasRef.current.undo();
   };
 
-
   return (
     <Fragment>
-      <form>
-        <div className="form-group">
-          <input
-            type="postText"
-            placeholder="Tell something about this work"
-            name="postText"
-            value={postText}
-            onChange={(e)=> setFormData({ ...formData, [e.target.name]: e.target.value })}
-          ></input>
-        </div>
-      </form>
       <CanvasDraw
-        canvasWidth={300}
+        canvasWidth={1000}
         color="#000000"
-        canvasHeight={300}
+        canvasHeight={500}
         style={{ border: "3px solid red" }}
         ref={canvasRef}
       />

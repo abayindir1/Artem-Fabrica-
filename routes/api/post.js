@@ -18,10 +18,10 @@ router.post("/", auth, async (req, res) => {
 
     const newPost = new Post({
       name: user.name,
-      text: req.body.text,
-      drawing: req.body.drawing,
+      drawing: req.body,
       user: req.user.id,
     });
+    console.log(req.body)
     const post = await newPost.save();
     res.json(post);
   } catch (error) {

@@ -5,31 +5,26 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
-  text: {
-    type: String,
-  },
   drawing: {
     lines: [
       {
         points: [
           {
             x: {
-              type: Number,
+              type: String,
               required: true,
             },
             y: {
-              type: Number,
+              type: String,
               required: true,
             },
           },
         ],
         brushColor: {
           type: String,
-          required: true,
         },
         brushRadius: {
-          type: Number,
-          required: true,
+          type: String,
         },
       },
     ],

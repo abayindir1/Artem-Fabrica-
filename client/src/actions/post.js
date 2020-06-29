@@ -4,7 +4,7 @@ import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
 
 // post create
-export const postCreate = ({text, drawing}) => async (
+export const postCreate = (drawing) => async (
   dispatch
 ) => {
   try {
@@ -13,15 +13,13 @@ export const postCreate = ({text, drawing}) => async (
         "Content-Type": "application/json",
       },
     };
-
-    const body = JSON.stringify(text, drawing)
-    // console.log("before call");
-    await axios.post("/api/posts", text, drawing, config).then((response) => {
-        console.log(response.data);
+    await axios.post("/api/posts", drawing, config).then((response) => {
+      console.log(response.data);
       dispatch({
         type: POST_CREATE,
         payload: response.data,
       });
+      // console.log(drawing)
 
       dispatch(setAlert("Post Created", "success"));
     });
