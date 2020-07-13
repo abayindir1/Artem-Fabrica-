@@ -1,5 +1,5 @@
 import axios from "axios";
-import { POST_CREATE, POST_ERROR, POST_LOAD } from "./types";
+import { POST_CREATE, POST_ERROR, GET_POSTS } from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -33,4 +33,24 @@ export const postCreate = (drawing) => async (
     });
   }
 };
+
+// Get posts
+export const getPosts = () => async (dispatch)=>{
+  try {
+    await axios.get("/api/posts").then((response) =>{
+      dispatch({
+        type: GET_POSTS,
+        payload: response.data,
+      });
+    })
+  } catch (error) {
+    console.log(error)
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error,
+      },
+    });
+  }
+}
 

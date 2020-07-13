@@ -6,6 +6,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import { deleteUser } from "../../actions/profile";
 import Spinner from "../Spinner/Spinner";
 
+
 const Home = (props) => {
   useEffect(() => {
     props.getCurrentProfile();
@@ -58,6 +59,8 @@ const Home = (props) => {
           </Fragment>
         )}
       </div>
+
+      
     </Fragment>
   );
 };
