@@ -1,8 +1,8 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { body } from "express-validator";
+// import { body } from "express-validator";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
 const EditProfile = (props) => {
@@ -19,7 +19,7 @@ const EditProfile = (props) => {
   useEffect(()=>{
     getCurrentProfile();
     console.log(props.profile)
-  },[])
+  })
   useEffect(() => {
     setFormData({
       bio: props.profile.loading || !props.profile.profile.bio ? "" : props.profile.profile.bio,

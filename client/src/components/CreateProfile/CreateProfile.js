@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { body } from "express-validator";
+// import { body } from "express-validator";
 import { createProfile } from "../../actions/profile";
 
 const CreateProfile = (props) => {

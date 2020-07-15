@@ -1,29 +1,32 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState, useRef} from 'react'
 import PropTypes from 'prop-types'
 import CanvasDraw from "react-canvas-draw"
 
 function PostItem(props) {
      const [drawing, setDrawing] = useState({})
 
+     const canvasRef = useRef(null);
+
     useEffect(() => {
         const drawingString = JSON.stringify(props.post.drawing)
         setDrawing(drawingString)
-        console.log(drawing)
-    });
+        localStorage.setItem("drawings", drawing)
+        // console.log(drawing)
+    },[props.post.drawing, drawing]);
     return (
         <div>
-            {/* <CanvasDraw
+            <CanvasDraw
           disabled
           hideGrid
-          ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
-          saveData={drawing}
-        /> */}
+          ref={canvasRef}
+          saveData={localStorage.getItem("drawings")}
+        />
         </div>
     )
 }
 
 PostItem.propTypes = {
-    posts: PropTypes.array.isRequired,
+    post: PropTypes.object.isRequired,
 }
 
 export default PostItem
