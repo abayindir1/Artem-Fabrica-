@@ -11,18 +11,18 @@ function PostItem(props) {
         const drawingData = props.post.drawing
 
         setDrawing(JSON.stringify(drawingData))
+        // console.log(drawingData)
 
-        for(let i=0; i<drawingData.lines.lenght; i++){
-            excludeId(drawingData.lines[i].points)
+        for(let i = 0; i < drawingData.lines.length; i++){
+            // console.log(drawingData.lines[i].points)
+            for(let j = 0; j<drawingData.lines[i].points.length; j++){
+                delete drawingData.lines[i].points[i]._id
+                console.log(drawingData.lines[i].points[i])
+            }
         }
-        console.log(drawingData)
     },[]);
 
-    const excludeId = (point) =>{
-        point.forEach(element => {
-            delete element._id
-        });
-    }
+
     return (
         <div>
             <CanvasDraw
