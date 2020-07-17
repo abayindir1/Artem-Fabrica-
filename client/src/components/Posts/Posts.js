@@ -11,7 +11,7 @@ function Posts(props) {
     useEffect(() => {
         props.getPosts()
         console.log(props)
-    })
+    },[props.loading])
 
     return (
             <div>

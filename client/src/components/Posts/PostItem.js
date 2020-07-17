@@ -8,18 +8,28 @@ function PostItem(props) {
      const canvasRef = useRef(null);
 
     useEffect(() => {
-        const drawingString = JSON.stringify(props.post.drawing)
-        setDrawing(drawingString)
-        localStorage.setItem("drawings", drawing)
-        // console.log(drawing)
-    },[props.post.drawing, drawing]);
+        const drawingData = props.post.drawing
+
+        setDrawing(JSON.stringify(drawingData))
+
+        for(let i=0; i<drawingData.lines.lenght; i++){
+            excludeId(drawingData.lines[i].points)
+        }
+        console.log(drawingData)
+    },[]);
+
+    const excludeId = (point) =>{
+        point.forEach(element => {
+            delete element._id
+        });
+    }
     return (
         <div>
             <CanvasDraw
           disabled
           hideGrid
           ref={canvasRef}
-          saveData={localStorage.getItem("drawings")}
+          saveData={drawing}
         />
         </div>
     )
