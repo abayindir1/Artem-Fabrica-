@@ -13,8 +13,9 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import Profiles from "./components/Profiles/Profiles";
 import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
-import Draw from "./components/Draw/Draw";
-import Posts from "./components/Posts/Posts";
+// import Draw from "./components/Draw/Draw";
+// import Posts from "./components/Posts/Posts";
+import Canvas from "./components/Canvas/Canvas";
 
 // Redux
 import { Provider } from "react-redux";
@@ -50,12 +51,10 @@ function App() {
             <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/profiles" component={Profiles}/>
             <PrivateRoute exact path="/profile/:id" component={Profile}/>
-            <PrivateRoute exact path="/draw" component={Draw}/>
-            <PrivateRoute exact path="/posts" component={Posts}/>
-
           </Switch>
             
         </section>
+            <PrivateRoute exact path="/canvas" component={Canvas}/>
       </Router>
     </Provider>
   );
