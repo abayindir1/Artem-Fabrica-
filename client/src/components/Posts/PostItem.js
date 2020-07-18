@@ -3,34 +3,33 @@ import PropTypes from 'prop-types'
 import CanvasDraw from "react-canvas-draw"
 
 function PostItem(props) {
-     const [drawing, setDrawing] = useState({})
+    //  const [drawing, setDrawing] = useState({})
 
-     const canvasRef = useRef(null);
+     var canvasRef = useRef(null);
 
     useEffect(() => {
         const drawingData = props.post.drawing
 
-        setDrawing(JSON.stringify(drawingData))
-        // console.log(drawingData)
-
+        
         for(let i = 0; i < drawingData.lines.length; i++){
-            // console.log(drawingData.lines[i].points)
+            delete drawingData.lines[i]._id
             for(let j = 0; j<drawingData.lines[i].points.length; j++){
                 delete drawingData.lines[i].points[i]._id
-                console.log(drawingData.lines[i].points[i])
             }
         }
+        // localStorage.setItem("drawings", JSON.stringify(drawingData))
+        canvasRef.current.loadSaveData(JSON.stringify(drawingData))
     },[]);
 
 
     return (
         <div>
-            <CanvasDraw
+        <CanvasDraw
           disabled
           hideGrid
-          ref={canvasRef}
-          saveData={drawing}
-        />
+          ref={canvas => (canvasRef = canvas)}
+          style={{ border: "3px solid red" }}
+          />
         </div>
     )
 }

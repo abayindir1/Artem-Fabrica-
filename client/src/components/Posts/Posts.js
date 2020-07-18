@@ -10,8 +10,8 @@ function Posts(props) {
     
     useEffect(() => {
         props.getPosts()
-        // console.log(props)
-    },[props.loading])
+        console.log(props)
+    },[])
 
     return (
             <div>
@@ -21,7 +21,7 @@ function Posts(props) {
                 <PostItem key={post._id} post={post}/>
               )
             ) : (
-              <h3>No Profiles Found</h3>
+              <h3>No Posts Found</h3>
              )} 
         </div>
     )
@@ -32,9 +32,9 @@ Posts.propTypes = {
     post: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state) => ({
-    post: state.post,
-  });
+const mapStateToProps = (state) => {
+   return {post: state.post} ;
+};
 
 export default connect(mapStateToProps, {getPosts})(Posts)
 
