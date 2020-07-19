@@ -51,10 +51,10 @@ function App() {
             <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/profiles" component={Profiles}/>
             <PrivateRoute exact path="/profile/:id" component={Profile}/>
+            <PrivateRoute exact path="/canvas" component={Canvas}/>
           </Switch>
             
         </section>
-            <PrivateRoute exact path="/canvas" component={Canvas}/>
       </Router>
     </Provider>
   );

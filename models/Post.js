@@ -6,28 +6,13 @@ const PostSchema = new mongoose.Schema({
     ref: "user",
   },
   drawing: {
-    lines: [
-      {
-        points: [
-          {
-            x: {
-              type: String,
-              required: true,
-            },
-            y: {
-              type: String,
-              required: true,
-            },
-          },
-        ],
-        brushColor: {
-          type: String,
-        },
-        brushRadius: {
-          type: String,
-        },
-      },
-    ],
+    url:{
+      type: String,
+        required: true,
+    },
+    drawingText: {
+      type: String,
+    }
   },
   upVote: [
     {
