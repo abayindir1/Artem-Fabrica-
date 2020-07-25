@@ -15,6 +15,7 @@ import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
 import Canvas from "./components/Canvas/Canvas";
 import Posts from "./components/Posts/Posts"
+import Post from "./components/Post/Post"
  
 // Redux
 import { Provider } from "react-redux";
@@ -52,6 +53,7 @@ function App() {
             <PrivateRoute exact path="/profile/:id" component={Profile}/>
             <PrivateRoute exact path="/canvas" component={Canvas}/>
             <PrivateRoute exact path="/posts" component={Posts}/>
+            <PrivateRoute exact path="/posts/:id" component={Post}/>
           </Switch>
             
         </section>

@@ -10,7 +10,7 @@ import PostItem from "./PostItem";
 function Posts(props) {
     useEffect(() => {
         props.getPosts()
-        console.log(props)
+        // console.log(props)
     },[])
 
   return (
