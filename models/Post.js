@@ -5,14 +5,9 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
-  drawing: {
-    url:{
-      type: String,
-        required: true,
-    },
-    drawingText: {
-      type: String,
-    }
+  url: {
+    type: String,
+    required: true,
   },
   upVote: [
     {

@@ -18,7 +18,7 @@ router.post("/", auth, async (req, res) => {
 
     const newPost = new Post({
       name: user.name,
-      drawing: req.body,
+      url: req.body.url,
       user: req.user.id,
     });
     console.log(req.body)

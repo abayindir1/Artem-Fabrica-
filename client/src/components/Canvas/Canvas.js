@@ -1,6 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SignatureCanvas from "react-signature-canvas";
+import {connect} from "react-redux"
+
+import {postCreate} from "../../actions/post"
+import { setAlert } from "../../actions/alert";
 
 function Canvas(props) {
 
@@ -9,17 +13,23 @@ function Canvas(props) {
   const [penSize, setPenSize] = useState(5)
   const canvasRef = useRef(null)
 
+  // useEffect(()=>{
+  //   console.log(url)
+  // })
+
   const onClear = () => {
     canvasRef.current.clear()
   }
 
   const onSave = () =>{
-    // console.log(canvasRef.current.toDataURL("image/png"))
     setUrl(canvasRef.current.toDataURL("image/png"))
+    props.postCreate(canvasRef.current.toDataURL("image/png"))
+    console.log(canvasRef.current.toDataURL("image/png"))
   }
 
-  const onChange = (e) => {
+  const onColorChange = (e) => {
     setColor(e.target.value);
+    
   };
   const onChangeNumber = (e) => {
     setPenSize(parseInt(e.target.value));
@@ -27,6 +37,8 @@ function Canvas(props) {
 
   return (
     <>
+    <h1>Show your skills</h1>    
+
     <div style={{textAlign:"center", border:"3px solid black", width:"fit-content", cursor:"crosshair"}}>
       <SignatureCanvas
         penColor={color}
@@ -42,7 +54,7 @@ function Canvas(props) {
       
       <input type="color" id="pen" name="pen"
            value={color} style={{width: "5%", height: "30px"}}
-           onChange={(e)=> onChange(e)}/>
+           onChange={(e)=> onColorChange(e)}/>
     <label htmlFor="pen">Pen Color</label>
 
     <input type="range" id="penSize" name="penSize"
@@ -57,6 +69,13 @@ function Canvas(props) {
       </>
   );
 }
-Canvas.propTypes = {};
+Canvas.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  postCreate: PropTypes.func.isRequired,
+};
 
-export default Canvas;
+const mapStateToProps = (state) => ({
+  posts: state.post.posts
+})
+
+export default connect(mapStateToProps, {setAlert, postCreate})(Canvas);

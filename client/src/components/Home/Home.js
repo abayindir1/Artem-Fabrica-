@@ -47,6 +47,9 @@ const Home = (props) => {
                 <Link to="/canvas" className="btn btn-primary">
                   Draw
                 </Link>
+                <Link to="/posts" className="btn btn-dark">
+                  Posts
+                </Link>
               </div>
             </div>
           </Fragment>
