@@ -1,7 +1,8 @@
 import axios from "axios";
-import { POST_CREATE, POST_ERROR, GET_POSTS, DELETE_POST, GET_POST} from "./types";
+import {POST_ERROR, GET_POSTS, DELETE_POST, GET_POST, CREATE_POST} from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
+import { body } from "express-validator";
 
 
 
@@ -60,23 +61,29 @@ export const deletePost = (id) => async(dispatch)=>{
   }
 }
 
-// post create
-  export const postCreate = (url) => async (dispatch)=>{
-    try {
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // };
+// create post
+export const postCreate = (url) => async(dispatch)=>{
+  try {
+   const config = {
+     headers:{
+       'Content-Type':"application/json"
+     }
+   }
 
-      const res = await axios.post("/api/posts", url)
-
-      console.log(res)
-    } catch (error) {
+   var body = {
+     url: url
+   }
+  //  console.log(JSON.stringify(url))
+    await axios.post("/api/posts", body, config).then(response=>{
       dispatch({
-        type: POST_ERROR,
-        payload:{msg: error.response.statusText, status: error.response.status}
+        type: CREATE_POST,
+        payload: response.data
       })
-    }
+    })
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload:{msg: error.response, status: error.response.status}
+    })
   }
-
+}
