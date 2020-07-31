@@ -9,15 +9,7 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  upVote: [
-    {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-      },
-    },
-  ],
-  downVote: [
+  likes: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -34,9 +26,6 @@ const PostSchema = new mongoose.Schema({
       text: {
         type: String,
         required: true,
-      },
-      name: {
-        type: String,
       },
       date: {
         type: Date,

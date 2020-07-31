@@ -3,7 +3,8 @@ import {
   GET_POSTS,
   DELETE_POST,
   GET_POST,
-  CREATE_POST
+  CREATE_POST,
+  UPDATE_LIKE,
 } from "../actions/types";
 
 const initialState = {
@@ -23,18 +24,26 @@ export default function (state = initialState, action) {
         posts: [payload],
         loading: false,
       };
-      case GET_POST:
-          return{
-              ...state,
-              post: payload,
-              loading: false
-          }
-      case DELETE_POST:
-          return{
-              ...state,
-              posts: state.posts.filter(post=> post.id !== payload),
-              loading: false
-          }
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
+        loading: false,
+      };
+    case UPDATE_LIKE:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === payload.id ? { ...post, likes: payload.likes } : post
+        ),
+        loading: false
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== payload),
+        loading: false,
+      };
     case CREATE_POST:
       return {
         ...state,

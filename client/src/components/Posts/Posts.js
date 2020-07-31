@@ -8,9 +8,10 @@ import Spinner from "../Spinner/Spinner";
 import PostItem from "./PostItem";
 
 function Posts(props) {
+ 
     useEffect(() => {
         props.getPosts()
-        // console.log(props)
+        
     },[])
 
   return (

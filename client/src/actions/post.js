@@ -1,5 +1,5 @@
 import axios from "axios";
-import {POST_ERROR, GET_POSTS, DELETE_POST, GET_POST, CREATE_POST} from "./types";
+import {POST_ERROR, GET_POSTS, DELETE_POST, GET_POST, CREATE_POST, UPDATE_LIKE} from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
 import { body } from "express-validator";
@@ -52,6 +52,40 @@ export const deletePost = (id) => async(dispatch)=>{
       })
 
       dispatch(setAlert("Post Deleted", "success"))
+    })
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload:{msg: error.response.statusText, status: error.response.status}
+    })
+  }
+}
+// like a post
+export const likePost = (id) => async(dispatch)=>{
+  try {
+    console.log(id)
+     const res = await axios.put(`/api/posts/like/${id}`)
+      // console.log(res)
+      dispatch({
+        type: UPDATE_LIKE,
+        payload: { id , likes: res.data}
+    })
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload:{msg: error.response.statusText, status: error.response.status}
+    })
+  }
+}
+
+// unlike a post
+export const unLikePost = (id) => async(dispatch)=>{
+  try {
+    const res = await axios.put(`/api/posts/unlike/${id}`)
+      // console.log(res)
+      dispatch({
+        type: UPDATE_LIKE,
+        payload: { id , likes: res.data}
     })
   } catch (error) {
     dispatch({

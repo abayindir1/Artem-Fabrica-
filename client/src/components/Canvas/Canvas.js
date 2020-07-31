@@ -23,7 +23,7 @@ function Canvas(props) {
   const onSave = () => {
     setUrl(canvasRef.current.toDataURL("image/png"));
     props.postCreate(canvasRef.current.toDataURL("image/png"));
-    // console.log(url)
+    onClear()
   };
 
   const onColorChange = (e) => {
