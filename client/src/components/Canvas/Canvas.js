@@ -59,7 +59,7 @@ function Canvas(props) {
           penColor={color}
           minWidth={penSize}
           dotSize={5}
-          canvasProps={{ width: 600, height: 600, className: "sigCanvas" }}
+          canvasProps={{ width: 450, height: 450, className: "sigCanvas" }}
           ref={canvasRef}
         />
       </div>

@@ -5,6 +5,9 @@ import {
   GET_POST,
   CREATE_POST,
   UPDATE_LIKE,
+  COMMENT_ERROR,
+  CREATE_COMMENT,
+  DELETE_COMMENT
 } from "../actions/types";
 
 const initialState = {
@@ -50,10 +53,28 @@ export default function (state = initialState, action) {
         posts: [payload, ...state.posts],
         loading: false,
       };
+      
+    case CREATE_COMMENT:
+      return{
+        ...state,
+        post: {...state.post, comment: payload},
+        loading: false,
+      }
+      case DELETE_COMMENT:
+        return{
+          ...state,
+          post:{
+            ...state.post,
+            comment: state.post.comment.filter(comment=> comment._id !== payload)
+          },
+          loading: false,
+        }
     case POST_ERROR:
+    case COMMENT_ERROR:
       return {
         ...state,
         errors: payload,
+        loading: false,
       };
 
     default:

@@ -11,7 +11,6 @@ function Posts(props) {
  
     useEffect(() => {
         props.getPosts()
-        
     },[])
 
   return (
@@ -21,13 +20,14 @@ function Posts(props) {
         ):(
             <Fragment>
                 <h1>Posts</h1>
+                <hr/>
                 <div>
                 {props.post.posts.length > 0 ? (
               props.post.posts[0].map((post) =>
               <PostItem key={post._id} post={post}/>
               )
             ) : (
-              <h3>No Profiles Found</h3>
+              <h3>No Posts Found</h3>
             )}
                 </div>
             </Fragment>

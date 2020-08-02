@@ -4,7 +4,6 @@ const auth = require("../../middleware/auth");
 const {check, validationResult} = require("express-validator")
 const Post = require("../../models/Post");
 const User = require("../../models/User");
-const Profile = require("../../models/profile");
 
 // @route Post api/posts
 // @desc Create a post
@@ -12,16 +11,13 @@ const Profile = require("../../models/profile");
 
 router.post("/", auth, async (req, res) => {
   try {
-    const user = await (await User.findById(req.user.id)).isSelected(
-      "-password"
-    );
-
+    const user = await User.findById(req.user.id).select("-password")
+      console.log(user)
     const newPost = new Post({
       name: user.name,
       url: req.body.url,
       user: req.user.id,
     });
-    // console.log(req.body)
     const post = await newPost.save();
     res.json(post);
   } catch (error) {
@@ -164,7 +160,7 @@ router.post(
         name: user.name
       };
 
-      console.log(post.comment)
+      // console.log(user.name)
       post.comment.unshift(newComment);
       await post.save();
       res.json(post.comment);

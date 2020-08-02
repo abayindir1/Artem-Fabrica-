@@ -5,6 +5,10 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  name:{
+    type: String,
+    // required: true
+  },
   url: {
     type: String,
     required: true,
@@ -19,6 +23,10 @@ const PostSchema = new mongoose.Schema({
   ],
   comment: [
     {
+      name:{
+        type: String,
+        required: true
+      },
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",

@@ -1,68 +1,84 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deletePost } from "../../actions/post";
 import { likePost } from "../../actions/post";
 import { unLikePost } from "../../actions/post";
+import "./Posts.css";
 
 const PostItem = (props) => {
   const [liked, setLiked] = useState(null);
   const [likes, setLikes] = useState(props.post.likes.length);
 
   React.useEffect(() => {
-    if(props.auth.user._id && props.post.likes.filter(like=> like.user === props.auth.user._id)){
-      setLiked(true)
-    }else{
-      setLiked(false)
+    if (
+      props.auth.user._id &&
+      props.post.likes.filter((like) => like.user === props.auth.user._id)
+    ) {
+      setLiked(true);
+    } else {
+      setLiked(false);
     }
-    
-  },[]);
+  }, []);
 
-  const onDelete = () =>{
-    props.deletePost(props.post._id)
+  const onDelete = () => {
+    props.deletePost(props.post._id);
     window.location.reload(false);
-  }
+  };
 
-  const onLike =()=>{
-    if(!liked){
-      props.likePost(props.post._id)
-      setLiked(true)
-      setLikes(props.post.likes.length++)
-      console.log(likes)
-      console.log(props.post.likes.length)
-    }else{
-      props.unLikePost(props.post._id)
-      setLiked(false)
-      setLikes(props.post.likes.length--)
-      console.log(likes)
-      console.log(props.post.likes.length)
+  const onLike = () => {
+    if (!liked) {
+      props.likePost(props.post._id);
+      setLiked(true);
+      setLikes(likes + 1);
+    } else {
+      props.unLikePost(props.post._id);
+      setLiked(false);
+      setLikes(likes - 1);
     }
-    console.log(liked)
-  }
+    console.log(likes);
+  };
   return (
-    <>
+    <div className="post-item">
+      <h5>{props.post.name}</h5>
       <Link to={`/posts/${props.post._id}`}>
-      <img src={props.post.url} style={{ border: "1px solid red" }}></img>
+        <img
+          src={props.post.url}
+          style={{ border: `2px solid black`, width: "25%" }}
+        ></img>
       </Link>
 
-      <a href={props.post.url} download className="btn btn-success">
-        <i className="fas fa-file-download"></i> Download Image
-      </a>
-
       <button className="btn btn-light" onClick={onLike}>
-      <i className="far fa-heart"></i> {props.post.likes.length}
-      </button>  
+        <i className="far fa-heart"></i> {likes}
+      </button>
 
-      {!props.auth.loading && props.post.user === props.auth.user._id && (
-        <button
-          className="btn btn-danger"
-          onClick={onDelete}
-        >
-          <i className="fas fa-trash-alt"></i> Delete
-        </button>
-      )}
-    </>
+      <div className="dropdown">
+        <span className="btn btn-dark">
+          Options <i className="fas fa-chevron-circle-down"></i>
+        </span>
+        <div className="dropdown-content">
+          {!props.auth.loading && props.post.user === props.auth.user._id && (
+            <button className="btn btn-danger option" onClick={onDelete}>
+              <i className="fas fa-trash-alt"></i>
+              <br />
+              Delete
+            </button>
+          )}
+          <a href={props.post.url} download className="btn btn-success option">
+            <i className="fas fa-file-download"></i>
+            <br />
+            Download
+          </a>
+          <Link to={`/posts/${props.post._id}`}>
+            <button className="btn btn-primary option">
+              <i className="fas fa-eye"></i> <br />
+              View
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -77,4 +93,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { likePost, unLikePost, deletePost })(PostItem);
+export default connect(mapStateToProps, { likePost, unLikePost, deletePost })(
+  PostItem
+);

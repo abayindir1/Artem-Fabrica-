@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 
 const authRouter = require("./routes/api/auth")
 const postRouter = require("./routes/api/post")
-const profileRouter = require("./routes/api/profile")
 const usersRouter = require("./routes/api/users")
 
 app = express();
@@ -14,7 +13,6 @@ app.use(express.json())
 
 app.use("/api/auth", authRouter)
 app.use("/api/users", usersRouter)
-app.use("/api/profile", profileRouter)
 app.use("/api/posts", postRouter)
 
 

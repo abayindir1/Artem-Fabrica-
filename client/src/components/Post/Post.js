@@ -1,41 +1,43 @@
-import React, { Fragment, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPost } from "../../actions/post";
-import { deletePost } from "../../actions/post";
+import { createComment } from "../../actions/post";
 import Spinner from "../Spinner/Spinner";
+import CommentArea from "./CommentArea";
+import CommentItem from "./CommentItem";
 
 const Post = (props) => {
   useEffect(() => {
     props.getPost(props.match.params.id);
-    console.log(props);
-  }, [props.getPost]);
+  }, []);
 
-  const onDelete = () => {
-    props.deletePost(props.post.post._id);
-    return <Redirect to="/posts" />;
-  };
   return (
     <>
-      {props.post.loading || props.post.post.url == null ? (
+      {props.post.loading ? (
         <Spinner />
       ) : (
-        // console.log(props.post.post.url)
         <div>
+          <h3>{props.post.post.name}</h3>
           <img
             src={props.post.post.url}
             style={{ border: "1px solid red" }}
           ></img>
-          <a href={props.post.post.url} download className="btn btn-success">
-            <i className="fas fa-file-download"></i>Download
-          </a>
-          <button className="btn btn-success">
-            <i class="far fa-heart"></i>
-          </button>
-          <button className="btn btn-danger" onClick={onDelete}>
-            <i className="fas fa-trash-alt"></i> Delete
-          </button>
+          <CommentArea postId={props.match.params.id} />
+          {props.post.post.comment.length > 0 ? (
+            props.post.post.comment.map((comment) => (
+              <CommentItem
+                key={comment._id}
+                name={comment.name}
+                text={comment.text}
+                postId={props.post.post._id}
+                commentId={comment._id}
+                user={comment.user}
+              />
+            ))
+          ) : (
+            <h3>No Comments</h3>
+          )}
         </div>
       )}
     </>
@@ -44,11 +46,11 @@ const Post = (props) => {
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
+  createComment: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   post: state.post,
   auth: state.auth,
 });
-export default connect(mapStateToProps, { getPost, deletePost })(Post);
+export default connect(mapStateToProps, { getPost, createComment })(Post);

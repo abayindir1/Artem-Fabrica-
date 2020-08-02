@@ -13,12 +13,15 @@ const Navbar = (props) => {
   const authLinks = (
     <ul>
       <li>
+        <Link to="/canvas">Draw</Link>
+      </li>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
         <a onClick={props.logout} href="#!">
           <i className="fas fa-running"></i> Logout
         </a>
-      </li>
-      <li>
-        <Link to="/profiles"><i className="fas fa-users"></i> Profiles</Link>
       </li>
     </ul>
   );
