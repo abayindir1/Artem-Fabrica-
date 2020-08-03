@@ -6,6 +6,8 @@ const postRouter = require("./routes/api/post")
 const usersRouter = require("./routes/api/users")
 
 const config = require("config")
+const path = require('path');
+
 app = express();
 const PORT = process.env.PORT || 3001
 
