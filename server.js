@@ -9,6 +9,9 @@ const config = require("config")
 app = express();
 const PORT = process.env.PORT || 3001
 
+const db = config.get("mongoURI")
+mongoose.connect(db)
+
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
@@ -16,11 +19,14 @@ app.use("/api/auth", authRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/posts", postRouter)
 
-const db = config.get("mongoURI")
-mongoose.connect(db)
-
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/draward";
-// mongoose.connect(MONGODB_URI)
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
 
 
 mongoose.connection.on("open", ()=> {
