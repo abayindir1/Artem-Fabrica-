@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteComment } from "../../actions/post";
+import "./Post.css"
 
 function CommentItem({user, name, text, postId, commentId, auth, deleteComment}) {
 
@@ -18,10 +19,10 @@ function CommentItem({user, name, text, postId, commentId, auth, deleteComment})
 
     return (
         <>
-        <div className="card-header">
+        <div className="card-header comment-header">
             <h6>{name}</h6>
         </div>
-        <div className="card-body">
+        <div className="card-body comment-body">
             <p>{text}</p>
             {authId === user && (
             <button className="btn btn-danger" onClick={onDelete}>

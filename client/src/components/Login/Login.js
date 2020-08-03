@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 
 import {login} from "../../actions/auth"
 import { setAlert } from "../../actions/alert";
+import "./Login.css"
  
 const Login = (props) => {
   const [formData, setFormData] = React.useState({

@@ -2,9 +2,12 @@ import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SignatureCanvas from "react-signature-canvas";
 import { connect } from "react-redux";
+import {Link} from "react-router-dom"
 
 import { postCreate } from "../../actions/post";
 import { setAlert } from "../../actions/alert";
+
+import "./Canvas.css"
 
 function Canvas(props) {
   const [url, setUrl] = useState(null);
@@ -23,7 +26,7 @@ function Canvas(props) {
   const onSave = () => {
     setUrl(canvasRef.current.toDataURL("image/png"));
     props.postCreate(canvasRef.current.toDataURL("image/png"));
-    onClear()
+    onClear();
   };
 
   const onColorChange = (e) => {
@@ -41,67 +44,69 @@ function Canvas(props) {
     setColor("black");
   };
 
-
-  
   return (
     <>
-      <h1>Show your skills</h1>
+    <h2>Draw Something</h2>
+    <div className="drawing">
+      <div className="draw-material">
+        <div
+          style={{
+            textAlign: "center",
+            border: "3px solid black",
+            width: "fit-content",
+            cursor: "crosshair",
+            marginBottom: "3%"
+          }}
+        >
+          <SignatureCanvas
+            penColor={color}
+            minWidth={penSize}
+            dotSize={5}
+            canvasProps={{ width: 450, height: 450, className: "sigCanvas" }}
+            ref={canvasRef}
+          />
+        </div>
+        <div className="tools">
+          <button className="btn btn-danger" onClick={onClear}>
+            Clear
+          </button>
+          <button className="btn btn-success" onClick={onSave}>
+            Save
+          </button>
+          <button className="btn btn-light" onClick={onEraser}>
+            Eraser
+          </button>
+          <button className="btn btn-dark" onClick={onPen}>
+            Pen
+          </button>
 
-      <div
-        style={{
-          textAlign: "center",
-          border: "3px solid black",
-          width: "fit-content",
-          cursor: "crosshair",
-        }}
-      >
-        <SignatureCanvas
-          penColor={color}
-          minWidth={penSize}
-          dotSize={5}
-          canvasProps={{ width: 450, height: 450, className: "sigCanvas" }}
-          ref={canvasRef}
-        />
+          <input
+            type="color"
+            id="pen"
+            name="pen"
+            value={color}
+            style={{ width: "15%", height: "30px", margin: "0 1% " }}
+            onChange={(e) => onColorChange(e)}
+          />
+          <label htmlFor="pen">Color</label>
+
+          <input
+            type="range"
+            id="penSize"
+            name="penSize"
+            value={penSize}
+            style={{ width: "20%" }}
+            min="1"
+            max="20"
+            onChange={(e) => onChangeNumber(e)}
+          />
+          <label htmlFor="penSize">Size</label>
+        </div>
       </div>
-      <button className="btn btn-danger" onClick={onClear}>
-        Clear
-      </button>
-      <button className="btn btn-success" onClick={onSave}>
-        Save
-      </button>
-      <button className="btn btn-light" onClick={onEraser}>
-        Eraser
-      </button>
-      <button className="btn btn-dark" onClick={onPen}>
-        Pen
-      </button>
-
-      
-      <input
-        type="color"
-        id="pen"
-        name="pen"
-        value={color}
-        style={{ width: "5%", height: "30px" }}
-        onChange={(e) => onColorChange(e)}
-      />
-      <label htmlFor="pen">Pen Color</label>
-
-      <input
-        type="range"
-        id="penSize"
-        name="penSize"
-        value={penSize}
-        style={{ width: "10%" }}
-        min="1"
-        max="20"
-        onChange={(e) => onChangeNumber(e)}
-      />
-      <label htmlFor="penSize">Size</label>
-
       <a href={url} download>
         <img src={url} style={{ border: "1px solid red" }}></img>
       </a>
+    </div>
     </>
   );
 }

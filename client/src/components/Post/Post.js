@@ -6,6 +6,7 @@ import { createComment } from "../../actions/post";
 import Spinner from "../Spinner/Spinner";
 import CommentArea from "./CommentArea";
 import CommentItem from "./CommentItem";
+import "./Post.css"
 
 const Post = (props) => {
   useEffect(() => {
@@ -18,7 +19,7 @@ const Post = (props) => {
         <Spinner />
       ) : (
         <div>
-          <h3>{props.post.post.name}</h3>
+          <h3 style={{marginTop: "3%"}}>{props.post.post.name}</h3>
           <img
             src={props.post.post.url}
             style={{ border: "1px solid red" }}

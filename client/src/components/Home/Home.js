@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../Spinner/Spinner";
 import Posts from "../Posts/Posts" 
+import "./Home.css"
 
 
 const Home = (props) => {
@@ -17,10 +18,11 @@ const Home = (props) => {
   ) : (
     <Fragment>
       <div className="home-welcome">
-        <h3>
+        <h3 id="welcome">
           <i className="far fa-smile-beam"></i> Hello{" "}
           {props.auth.user && props.auth.user.name}
         </h3>
+        <h1>Posts</h1>
           <Fragment>
                 <Posts/>
                 {/* <Link to="/posts" className="btn btn-dark">

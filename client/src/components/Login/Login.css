@@ -1,0 +1,25 @@
+.landing-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #F4a950;
+    font-family: 'Rowdies', cursive;
+  }
+  .sign-in-form{
+    background-color: #161b21;
+    text-align: center;
+    padding: 3%;
+    border-radius: 6rem;
+  }
+  .sign-in-form input{
+      width: 50%;
+  }
+  .sign-in-form .btn{
+    width: fit-content;
+    background-color: #161b21;
+    color: #F4a950
+}
+.sign-in-form .btn:hover{
+    color: #D2302C
+}

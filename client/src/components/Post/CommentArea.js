@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
 import { createComment } from "../../actions/post";
+import "./Post.css"
 
 function CommentArea(props) {
     const [text, setText] = React.useState("");

@@ -1,0 +1,30 @@
+
+.navbar{
+    display: flex;
+    background-color: #161b21;
+    color: #F4a950;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    margin: 0;
+    padding: 1%;
+    font-family: 'Rowdies', cursive;
+
+  }
+  .navbar ul {
+    display: flex;
+    list-style-type: none;
+  }
+  .navbar a {
+    color: #F4a950;
+    margin: 1rem;
+    text-decoration: unset;
+    font-size: larger;
+  }
+  .navbar a:hover{
+    color: #D2302C;
+  }
+
+  
+
+

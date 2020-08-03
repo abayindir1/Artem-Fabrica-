@@ -6,6 +6,7 @@ import { getPosts } from "../../actions/post";
 import { setAlert } from "../../actions/alert";
 import Spinner from "../Spinner/Spinner";
 import PostItem from "./PostItem";
+import "./Posts.css";
 
 function Posts(props) {
  
@@ -14,14 +15,11 @@ function Posts(props) {
     },[])
 
   return (
-    <Fragment>
+    <div className="posts">
         {props.post.loading ? (
             <Spinner/>
         ):(
             <Fragment>
-                <h1>Posts</h1>
-                <hr/>
-                <div>
                 {props.post.posts.length > 0 ? (
               props.post.posts[0].map((post) =>
               <PostItem key={post._id} post={post}/>
@@ -29,10 +27,9 @@ function Posts(props) {
             ) : (
               <h3>No Posts Found</h3>
             )}
-                </div>
             </Fragment>
         )}
-    </Fragment>
+    </div>
   );
 }
 
