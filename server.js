@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname + "/client/build/index.html"));
     });
   }
-
+console.log(__dirname)
 
 mongoose.connection.on("open", ()=> {
     console.log("Connection Made")
