@@ -1,0 +1,4 @@
+{
+    "jwtSecret": "drawardsecrettoken",
+    "mongoURI":"mongodb+srv://user1:dbde40789@artem-fabrica.7qjvo.mongodb.net/Artem-Fabrica?retryWrites=true&w=majority"
+}
