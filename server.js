@@ -5,6 +5,7 @@ const authRouter = require("./routes/api/auth")
 const postRouter = require("./routes/api/post")
 const usersRouter = require("./routes/api/users")
 
+const config = require("config")
 app = express();
 const PORT = process.env.PORT || 3001
 
@@ -15,9 +16,11 @@ app.use("/api/auth", authRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/posts", postRouter)
 
+const db = config.get("mongoURI")
+mongoose.connect(db)
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/draward";
-mongoose.connect(MONGODB_URI)
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/draward";
+// mongoose.connect(MONGODB_URI)
 
 
 mongoose.connection.on("open", ()=> {
