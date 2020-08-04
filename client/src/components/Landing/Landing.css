@@ -2,12 +2,8 @@
     justify-content: space-between;
     font-family: 'Rowdies', cursive;
     text-align: center;
-    background: url("../../images/landing.png");
-    background-position: 0% 0%;
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    height: 100vh;
+    background-color: #F4a950;
+    height: 91vh;
     width: 100%;
 }
 .landing-content{
