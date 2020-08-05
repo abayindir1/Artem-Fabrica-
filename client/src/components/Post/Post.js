@@ -6,41 +6,44 @@ import { createComment } from "../../actions/post";
 import Spinner from "../Spinner/Spinner";
 import CommentArea from "./CommentArea";
 import CommentItem from "./CommentItem";
-import "./Post.css"
+import "./Post.css";
 
-const Post = ({ getPost, post, match}) => {
+const Post = ({ getPost, post, match }) => {
   useEffect(() => {
     getPost(match.params.id);
-    console.log(post)
+    console.log(post);
   }, []);
 
   return (
     <>
-    
       {post.loading && !post.post ? (
         <Spinner />
       ) : (
-          <div>
-          <img
-          src={post.post.url}
-          style={{ border: "1px solid red", marginTop:"3%" }}
-          ></img>
-          <CommentArea postId={match.params.id} />
-          {post.post.comment.length > 0 ? (
-            post.post.comment.map((comment) => (
-              <CommentItem
-              key={comment._id}
-              name={comment.name}
-              text={comment.text}
-              postId={post.post._id}
-              commentId={comment._id}
-              user={comment.user}
-              />
-              ))
+        <>
+          {post.post && (
+            <div>
+              <img
+                src={post.post.url}
+                style={{ border: "1px solid red", marginTop: "3%" }}
+              ></img>
+              <CommentArea postId={match.params.id} />
+              {post.post.comment.length > 0 ? (
+                post.post.comment.map((comment) => (
+                  <CommentItem
+                    key={comment._id}
+                    name={comment.name}
+                    text={comment.text}
+                    postId={post.post._id}
+                    commentId={comment._id}
+                    user={comment.user}
+                  />
+                ))
               ) : (
                 <h3>No Comments</h3>
-                )}
-        </div>
+              )}
+            </div>
+          )}
+        </>
       )}
     </>
   );
