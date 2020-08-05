@@ -8,7 +8,7 @@ import CommentArea from "./CommentArea";
 import CommentItem from "./CommentItem";
 import "./Post.css"
 
-const Post = ({ getPost, post: { post, loading }, match}) => {
+const Post = ({ getPost, post, match}) => {
   useEffect(() => {
     getPost(match.params.id);
     console.log(post)
@@ -17,23 +17,23 @@ const Post = ({ getPost, post: { post, loading }, match}) => {
   return (
     <>
     
-      {loading && !post ? (
+      {post.loading && !post.post ? (
         <Spinner />
       ) : (
           <div>
-          <h3 style={{marginTop: "3%"}}>{post.name && (post.name)}</h3>
+          <h3 style={{marginTop: "3%"}}>{post.post.name && (post.post.name)}</h3>
           <img
-          src={post.url}
+          src={post.post.url}
           style={{ border: "1px solid red" }}
           ></img>
           <CommentArea postId={match.params.id} />
-          {post.comment.length > 0 ? (
-            post.comment.map((comment) => (
+          {post.post.comment.length > 0 ? (
+            post.post.comment.map((comment) => (
               <CommentItem
               key={comment._id}
               name={comment.name}
               text={comment.text}
-              postId={post._id}
+              postId={post.post._id}
               commentId={comment._id}
               user={comment.user}
               />
