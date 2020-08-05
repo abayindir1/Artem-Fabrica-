@@ -5,7 +5,6 @@
 1. [Overview](#Overview)
 2. [Technology Used](#Technology-Used)
 3. [Challenges](#Challenges)
-4. [Final Thoughts](#Final-Thoughts)
 
 
 ## Overview
