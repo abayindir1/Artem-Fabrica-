@@ -13,20 +13,24 @@ const PostItem = (props) => {
   const [likes, setLikes] = useState(null);
 
   React.useEffect(() => {
+    const number1 = props.post.likes.filter((like) => like.user === props.auth.user._id).length
     if (
-      props.auth.user._id &&
-      props.post.likes.filter((like) => like.user === props.auth.user._id)
+       number1 > 0 
     ) {
       setLiked(true);
-    } else {
+    } else{
       setLiked(false);
     }
     const number = props.post.likes.length;
     setLikes(number);
+    console.log(liked)
   }, []);
 
   const onDelete = () => {
     props.deletePost(props.post._id);
+    setInterval(() => {
+      window.location.reload(false);
+    }, 1000);
   };
 
   const onLike = () => {
@@ -34,12 +38,16 @@ const PostItem = (props) => {
       props.likePost(props.post._id);
       setLiked(true);
       setLikes(likes + 1);
-    } else {
+      console.log("liked")
+    } else{
       props.unLikePost(props.post._id);
       setLiked(false);
       setLikes(likes - 1);
+      console.log("unliked")
     }
-    console.log(likes);
+    console.log(props.post.likes.filter((like) => like.user === props.auth.user._id).length > 0)
+    console.log(props.post.likes)
+    console.log(liked)
   };
   return (
     <>
