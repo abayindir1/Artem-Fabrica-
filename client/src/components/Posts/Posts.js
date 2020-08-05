@@ -8,20 +8,20 @@ import Spinner from "../Spinner/Spinner";
 import PostItem from "./PostItem";
 import "./Posts.css";
 
-function Posts(props) {
+function Posts({getPosts, post: { posts, loading }}) {
  
     useEffect(() => {
-        props.getPosts()
+        getPosts()
     },[])
 
   return (
     <div className="posts">
-        {props.post.loading ? (
+        {loading && !posts ? (
             <Spinner/>
         ):(
             <Fragment>
-                {props.post.posts.length > 0 ? (
-              props.post.posts[0].map((post) =>
+                {posts[0] && posts[0].length > 0 ? (
+              posts[0].map((post) =>
               <PostItem key={post._id} post={post}/>
               )
             ) : (
