@@ -21,12 +21,9 @@ const Post = ({ getPost, post, match}) => {
         <Spinner />
       ) : (
           <div>
-          {post.post.name && (
-            <h3 style={{marginTop: "3%"}}>{post.post.name}</h3>
-          )}
           <img
           src={post.post.url}
-          style={{ border: "1px solid red" }}
+          style={{ border: "1px solid red", marginTop:"3%" }}
           ></img>
           <CommentArea postId={match.params.id} />
           {post.post.comment.length > 0 ? (
