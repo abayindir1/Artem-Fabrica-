@@ -10,11 +10,9 @@
 
 ## Overview
 
-Art inspires art, in paint and in words. Picture Poetry is built at the intersection of poems and paintings. Users are prompted with a painting selected at random from the Metropolitan Museum of Art, and can then write a poem inspired by that painting, guided by what feelings strike them.
+This is a full stack MERN application that I practiced my React skills and learned Redux. Artem-Farbrica is a website that users can draw using canvas and share with others.
 
-You can also browse the work of other picture poets, saving the works that you like best to your own collection. A fullstack MERN application with user auth, this web app was diifficult yet deeply rewarding to make.
-
-Picture Poetry is a long time passion project of mine, and I intend to continue to add to it over time so that other poets can find a place to enjoy fine art, inspiration, and the colorful poems that result.
+Also, users can comment on other drawings made by different people, like them and download to their computers in png format if they wish. 
 
 Check out this project deployed to heroku [here](https://artem-fabrica.herokuapp.com/)
 
@@ -37,8 +35,7 @@ Check out this project deployed to heroku [here](https://artem-fabrica.herokuapp
 
 ## Challenges
 
-This project was at its most difficult in configuring the authentication flow, especially as this was my largest yet practical application of Redux in an app. The knowledge gained from overcoming these obstacles, however, has proved highly benefical in creating user friendly web apps that need complex auth flows with protected routes.
+This is my first React App with Redux. I struggled setting up Redux and using it. This application was hard but I enjoyed every bit of it. It also took longer for me to finish because of my schedule. 
 
-## Final-Thoughts
+I also had problems when I tried to deploy to heroku, but handled it with the help of Google.
 
-This project turned out different than originally visualized because each step brought a new batch of ideas I wanted to implement. Like a painting, a website always has room for more, and over the following months I hope to realize more and more of that vision.
