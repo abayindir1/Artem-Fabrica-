@@ -27,9 +27,6 @@ const PostItem = (props) => {
 
   const onDelete = () => {
     props.deletePost(props.post._id);
-    setInterval(() => {
-      window.location.reload(false);
-    }, 3000);
   };
 
   const onLike = () => {
