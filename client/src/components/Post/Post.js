@@ -21,7 +21,9 @@ const Post = ({ getPost, post, match}) => {
         <Spinner />
       ) : (
           <div>
-          <h3 style={{marginTop: "3%"}}>{post.post.name && (post.post.name)}</h3>
+          {post.post.name && (
+            <h3 style={{marginTop: "3%"}}>{post.post.name}</h3>
+          )}
           <img
           src={post.post.url}
           style={{ border: "1px solid red" }}
