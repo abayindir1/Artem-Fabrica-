@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
-import Landing from "./components/Landing/Landing";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Alert from "./components/Alert/Alert";
@@ -32,7 +31,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <Navbar />
-        <Route exact path="/" component={Landing} />
           <Alert />
         <section className="landing-container container">
           <Switch>
@@ -42,7 +40,7 @@ function App() {
         </section>
         <section className="container">
           <Switch>
-            <PrivateRoute exact path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
             <PrivateRoute exact path="/canvas" component={Canvas}/>
             <PrivateRoute exact path="/posts" component={Posts}/>
             <PrivateRoute exact path="/posts/:id" component={Post}/>

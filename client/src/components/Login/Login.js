@@ -26,7 +26,7 @@ const Login = (props) => {
 
 // Redirect if logged in
 if(props.isAuthenticated){
-  return <Redirect to="/home"/>
+  return <Redirect to="/"/>
 }
 
   return (
