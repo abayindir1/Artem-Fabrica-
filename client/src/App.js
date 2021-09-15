@@ -32,7 +32,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Navbar />
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/landing" component={Landing} />
           <Alert />
         <section className="landing-container container">
           <Switch>
@@ -42,7 +42,7 @@ function App() {
         </section>
         <section className="container">
           <Switch>
-            <PrivateRoute exact path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
             <PrivateRoute exact path="/canvas" component={Canvas}/>
             <PrivateRoute exact path="/posts" component={Posts}/>
             <PrivateRoute exact path="/posts/:id" component={Post}/>

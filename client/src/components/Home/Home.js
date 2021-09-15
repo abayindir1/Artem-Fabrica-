@@ -5,14 +5,13 @@ import { connect } from "react-redux";
 import Spinner from "../Spinner/Spinner";
 import Posts from "../Posts/Posts" 
 import "./Home.css"
+import PublicPosts from "../PublicPosts/PublicPosts";
 
 
 const Home = (props) => {
-  useEffect(() => {
-    // console.log(props.profile.profile)
-  }, []);
-
-
+useEffect(() => {
+  console.log(props)
+})
   return props.auth.loading === null ? (
     <Spinner />
   ) : (
@@ -24,7 +23,12 @@ const Home = (props) => {
         </h3>
         <h1>Posts</h1>
           <Fragment>
-                <Posts/>
+          {props.auth.user ? (
+              <Posts/>
+            ) : (
+              <PublicPosts/>
+            )}
+                {/* <Posts/> */}
                 {/* <Link to="/posts" className="btn btn-dark">
                   Posts
                 </Link> */}
